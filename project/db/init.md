@@ -1,3 +1,9 @@
+# Task 1: Database Initialization
+
+## Overview
+
+The system choosed to develop is a platform inspired by CTF (Capture The Flag) competitions, where users can solve challenges to earn points.
+
 ## _STUDENT_ Scenario
 
 1. Sign in into the platform.
@@ -91,9 +97,28 @@ CREATE TABLE challenges (
 1. Sign in into the platform.
 2. Update challenges _Visibility_ setting.
 3. Create/update/remove challenges.
+4. If user activity is malicious, the admin can ban the user.
 
 ### Implementation
 
 1. **User Authentication**: Similar to the previous scenario.
 2. **Availability Management:** The ADMIN role should have the permission to update the `is_visible` field in the `challenges` table, allowing them to control which challenges are visible to students.
 3. **Challenge Management:** This role has the permission to add a new row in the `challenges` table, update existing challenges, or delete them. _ADMIN_ can update the `is_available` field in the `challenges` table, allowing tutors to control which challenges are available to students.
+4. **User Status:** If user activity is malicious, the admin can ban the user by updating their `status` field in the `users` table. This feature allows more general admin to manage user accounts effectively, such as suspending or reactivating accounts.
+
+<br>
+
+To implement the _ADMIN_ scenario, we need to ensure that the database schema supports user banning and challenge management:
+
+<br>
+
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL CHECK (role IN ('Student', 'Tutor', 'Admin')),
+    score INTEGER DEFAULT 0,
+    status BOOLEAN DEFAULT TRUE
+);
+```
