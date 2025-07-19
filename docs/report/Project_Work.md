@@ -220,7 +220,7 @@ The following _Figure 1_ illustrates the relationships between the main entities
 \vspace{0.5cm}
 
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{./docs/report/img/1_1.png}
+    \includegraphics[width=0.7\textwidth]{./docs/report/img/1_1.png}
 \end{center}
 
 > **Figure 1:** An ER Diagram of the training platform designed to illustrate the relationships between main entities.
