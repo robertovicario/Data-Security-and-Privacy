@@ -6,7 +6,7 @@ subtitle: "Data Security and Privacy @ uninsubria"
 author: "Roberto Vicario"
 date: "2024/2025"
 
-titlepage: true
+titlepage: false
 titlepage-color: "FFFFFF"
 titlepage-text-color: "000000"
 titlepage-rule-color: "007161"

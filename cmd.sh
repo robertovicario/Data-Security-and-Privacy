@@ -19,6 +19,15 @@ articles() {
     handler
 }
 
+project_work() {
+    printer "📄 Generating Project Work report"
+    pdfunite \
+        ./dist/Frontpiece.pdf \
+        ./dist/Project_Work.pdf \
+        ./dist/Project_Work_Final.pdf
+    handler
+}
+
 # TODO: Remove in production
 commit() {
     printer "📦 Committing changes"
@@ -50,10 +59,13 @@ case $1 in
     articles)
         articles $@
         ;;
+    project_work)
+        project_work
+        ;;
     commit)  # TODO: Remove in production
         commit
         ;;
     *)
-        echo "Usage: $0 {setup|articles}"
+        echo "Usage: $0 {setup|articles|project_work}"
         ;;
 esac
