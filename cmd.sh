@@ -22,7 +22,7 @@ articles() {
 project_work() {
     printer "📄 Generating Project Work report"
     pdfunite \
-        ./dist/Frontpiece.pdf \
+        ./dist/front.pdf \
         ./dist/Project_Work.pdf \
         ./dist/Project_Work_Final.pdf
     handler
