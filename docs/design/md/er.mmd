@@ -1,0 +1,41 @@
+---
+config:
+  theme: neutral
+  look: classic
+  layout: elk
+---
+erDiagram
+    Users {
+        NUMBER id PK "Primary Key"
+        VARCHAR2 username "Unique, Not Null"
+        VARCHAR2 password "Not Null"
+        VARCHAR2 role "Student | Tutor | Admin"
+        NUMBER score "Default 0, >= 0"
+        NUMBER status "0 | 1"
+    }
+    Challenges {
+        VARCHAR2 code PK "Primary Key"
+        VARCHAR2 title "Unique, Not Null"
+        CLOB body "Not Null"
+        VARCHAR2 category "Not Null"
+        VARCHAR2 flag "Unique, Not Null"
+        NUMBER is_visible "0 | 1"
+        NUMBER is_available "0 | 1"
+        NUMBER points "Default 0, >= 0"
+    }
+    Solved_Challenges {
+        NUMBER id PK "Primary Key"
+        TIMESTAMP solved_at "Default current time"
+        NUMBER user_id FK "FK to Users.id"
+        VARCHAR2 challenge_code FK "FK to Challenges.code"
+    }
+    Leaderboard {
+        NUMBER id "From Users.id"
+        VARCHAR2 username "From Users.username"
+        NUMBER score "From Users.score"
+        NUMBER Solved_Challenges "Count of solved Challenges"
+    }
+    Users ||--o{ Solved_Challenges : solves
+    Challenges ||--o{ Solved_Challenges : is_solved_in
+    Users ||..|| Leaderboard : contributes_to
+    Solved_Challenges ||..|| Leaderboard : aggregates_into

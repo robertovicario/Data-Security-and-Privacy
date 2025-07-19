@@ -8,10 +8,23 @@ setup() {
 
 articles() {
     printer "📚 Generating documentation"
+    mkdir -p ./dist
     pandoc ./docs/articles/$2.md \
-    -o ./docs/$2.pdf \
-    --template=./pandoc-latex-template/template-multi-file/eisvogel.latex \
-    --pdf-engine=xelatex
+        -o ./dist/$2.pdf \
+        --from=markdown \
+        --template=./pandoc-latex-template/template-multi-file/eisvogel.latex \
+        --pdf-engine=xelatex \
+        --filter=pandoc-latex-environment \
+        --listings
+    handler
+}
+
+# TODO: Remove in production
+commit() {
+    printer "📦 Committing changes"
+    git add .
+    git commit -m updates
+    git push
     handler
 }
 
@@ -36,6 +49,9 @@ case $1 in
         ;;
     articles)
         articles $@
+        ;;
+    commit)  # TODO: Remove in production
+        commit
         ;;
     *)
         echo "Usage: $0 {setup|articles}"
