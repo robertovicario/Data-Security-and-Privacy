@@ -170,7 +170,7 @@ Designing this scenario requires the following considerations:
 3. **Challenge Management:** This role has the permission to add a new row in the `Challenges` table, update existing challenges, or delete them. _ADMIN_ can update the `is_available` field in the `Challenges` table, allowing tutors to control which challenges are available to students.
 4. **User Status:** If user activity is malicious, the admin can ban the user by updating their `status` field in the `Users` table. This feature allows more general admin to manage user accounts effectively, such as suspending or reactivating accounts.
 
-<br>
+\vspace{0.5cm}
 
 To implement this scenario, we need to ensure that the database schema supports this management:
 
