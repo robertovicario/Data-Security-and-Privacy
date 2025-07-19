@@ -112,6 +112,23 @@ CREATE TABLE Solved_Challenges (
 );
 ```
 
+### Leaderboard
+
+To be completed, the platform should have a leaderboard that displays the top students based on their scores and the number of challenges solved. It is not necessery to create a new table for this, as it can be achieved using a view `Leaderboard` that aggregates data from the `Users` and `Solved_Challenges` tables:
+
+\vspace{0.5cm}
+
+```sql
+-- Leaderboard
+CREATE VIEW Leaderboard AS
+SELECT u.id, u.username, u.score, COUNT(sc.challenge_code) AS Solved_Challenges
+FROM Users u
+LEFT JOIN Solved_Challenges sc ON u.id = sc.user_id
+WHERE u.role = 'Student'
+GROUP BY u.id, u.username, u.score
+ORDER BY u.score DESC, COUNT(sc.challenge_code) DESC;
+```
+
 ## _Tutor_ Scenario
 
 Here is a breakdown of the operations that a _Tutor_ can perform on the platform:
@@ -186,15 +203,7 @@ CREATE TABLE Users (
     -- -------------------------
     CHECK (role IN ('Student', 'Tutor', 'Admin'))
 );
-```
 
-## Leaderboard
-
-To be completed, the platform should have a leaderboard that displays the top students based on their scores and the number of challenges solved. It is not necessery to create a new table for this, as it can be achieved using a view `Leaderboard` that aggregates data from the `Users` and `Solved_Challenges` tables:
-
-\vspace{0.5cm}
-
-```sql
 -- Leaderboard
 CREATE VIEW Leaderboard AS
 SELECT u.id, u.username, u.score, COUNT(sc.challenge_code) AS Solved_Challenges
