@@ -21,10 +21,18 @@ articles() {
 
 project_work() {
     printer "📄 Generating Project Work report"
+    cat ./docs/report/md/*.md > ./docs/report/Project_Work.md
+    pandoc ./docs/report/Project_Work.md \
+        -o ./dist/content.pdf \
+        --from=markdown \
+        --template=./pandoc-latex-template/template-multi-file/eisvogel.latex \
+        --pdf-engine=xelatex \
+        --filter=pandoc-latex-environment \
+        --listings
     pdfunite \
         ./dist/front.pdf \
-        ./dist/Project_Work.pdf \
-        ./dist/Project_Work_Final.pdf
+        ./dist/content.pdf \
+        ./dist/Project_Work.pdf
     handler
 }
 

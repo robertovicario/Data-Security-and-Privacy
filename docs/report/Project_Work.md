@@ -31,7 +31,6 @@ pandoc-latex-environment:
     warning-box: [warning]
     error-box: [error]
 ---
-
 # Task 1: Database Design
 
 ## Overview: Capture The Flag (CTF) Training Platform
@@ -42,7 +41,7 @@ The developed system is a training platform modeled after _Capture The Flag (CTF
 
 The platform is designed around distinct user roles each with specific permissions and workflows. The database schema and platform logic are structured to support these roles and their interactions, ensuring secure authentication, challenge management, and real-time tracking of user progress across three primary usage scenarios.
 
-## _Student_ Scenario
+## Student Scenario
 
 Here is a breakdown of the operations that a _Student_ can perform on the platform:
 
@@ -129,7 +128,7 @@ GROUP BY u.id, u.username, u.score
 ORDER BY u.score DESC, COUNT(sc.challenge_code) DESC;
 ```
 
-## _Tutor_ Scenario
+## Tutor Scenario
 
 Here is a breakdown of the operations that a _Tutor_ can perform on the platform:
 
@@ -167,7 +166,7 @@ CREATE TABLE Challenges (
 );
 ```
 
-## _Admin_ Scenario
+## Admin Scenario
 
 Here is a breakdown of the operations that an _Admin_ can perform on the platform:
 
@@ -221,7 +220,7 @@ The following _Figure 1_ illustrates the relationships between the main entities
 \vspace{0.5cm}
 
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{./docs/articles/img/1_1.png}
+    \includegraphics[width=0.5\textwidth]{./docs/report/img/1_1.png}
 \end{center}
 
 > **Figure 1:** An ER Diagram of the training platform designed to illustrate the relationships between main entities.
